@@ -7,6 +7,7 @@ mkdir build 2>/dev/null
 cd build
 
 # handle makin' stuff: first cmake, then make (if successful)
-cmake ../ && make .
+cmake ../
+make
 
 cd -

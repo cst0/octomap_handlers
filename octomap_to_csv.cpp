@@ -2,6 +2,7 @@
 #include "unistd.h"
 #include <cstdio>
 #include <iostream>
+#include <istream>
 
 int main(int argc, char *argv[])
 {
@@ -38,6 +39,17 @@ int main(int argc, char *argv[])
             return -1;
         }
     }
+
+    output_stream << "x,y,z,size";
+    for (octomap::OcTree::leaf_iterator iter = octree.begin_leafs(); iter != octree.end_leafs(); ++iter) {
+        std::string output_string = "";
+        output_string += std::to_string(iter.getX()) + ",";
+        output_string += std::to_string(iter.getY()) + ",";
+        output_string += std::to_string(iter.getZ()) + ",";
+        output_string += std::to_string(iter.getSize()) + "\n";
+        output_stream << output_string;
+    }
+    std::cout << "I think I'm all done here." << std::endl;
 
     return 0;
 }
