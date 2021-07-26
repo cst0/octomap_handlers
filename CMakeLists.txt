@@ -7,9 +7,9 @@ project(octomap_handlers_pkg)
 ## Find catkin macros and libraries
 ## if COMPONENTS list like find_package(catkin REQUIRED COMPONENTS xyz)
 ## is used, also find other catkin packages
+find_package(octomap REQUIRED)
 find_package(catkin REQUIRED COMPONENTS
   message_generation
-  message_handling
   octomap
   roscpp
   rospy
@@ -107,7 +107,7 @@ find_package(catkin REQUIRED COMPONENTS
 catkin_package(
 #  INCLUDE_DIRS include
 #  LIBRARIES octomap_handlers_pkg
-#  CATKIN_DEPENDS message_generation message_handling octomap roscpp rospy
+#  CATKIN_DEPENDS message_generation octomap roscpp rospy
 #  DEPENDS system_lib
 )
 
@@ -120,6 +120,7 @@ catkin_package(
 include_directories(
 # include
   ${catkin_INCLUDE_DIRS}
+  ${OCTOMAP_INCLUDE_DIRS}
 )
 
 ## Declare a C++ library
@@ -148,9 +149,10 @@ set_target_properties(${PROJECT_NAME}_octomap_to_csv PROPERTIES OUTPUT_NAME node
 # add_dependencies(${PROJECT_NAME}_node ${${PROJECT_NAME}_EXPORTED_TARGETS} ${catkin_EXPORTED_TARGETS})
 
 ## Specify libraries to link a library or executable target against
-# target_link_libraries(${PROJECT_NAME}_node
-#   ${catkin_LIBRARIES}
-# )
+target_link_libraries(${PROJECT_NAME}_octomap_to_csv
+  ${catkin_LIBRARIES}
+  ${OCTOMAP_LIBRARIES}
+)
 
 #############
 ## Install ##
