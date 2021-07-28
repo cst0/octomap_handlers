@@ -1,5 +1,5 @@
 cmake_minimum_required(VERSION 3.0.2)
-project(octomap_handlers_pkg)
+project(octomap_handlers)
 
 ## Compile as C++11, supported in ROS Kinetic and newer
 # add_compile_options(-std=c++11)
@@ -142,7 +142,7 @@ add_executable(${PROJECT_NAME}_octomap_to_csv src/octomap_to_csv.cpp)
 ## The above recommended prefix causes long target names, the following renames the
 ## target back to the shorter version for ease of user use
 ## e.g. "rosrun someones_pkg node" instead of "rosrun someones_pkg someones_pkg_node"
-set_target_properties(${PROJECT_NAME}_octomap_to_csv PROPERTIES OUTPUT_NAME node PREFIX "")
+set_target_properties(${PROJECT_NAME}_octomap_to_csv PROPERTIES OUTPUT_NAME octomap_to_csv PREFIX "")
 
 ## Add cmake target dependencies of the executable
 ## same as for the library above
