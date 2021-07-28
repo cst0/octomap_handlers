@@ -30,7 +30,6 @@ int main(int argc, char *argv[])
 
     std::fstream output_stream;
     if (outputfile == NULL) {
-        std::cout << "didn't get output file, writing to stdout" << std::endl;
         output_stream.open("stdout", std::fstream::in);  // TODO-- stdout isn't gonna be accessed like this.
     } else {
         output_stream.open(outputfile, std::fstream::out);
@@ -40,16 +39,13 @@ int main(int argc, char *argv[])
         }
     }
 
-    output_stream << "x,y,z,size";
+    std::cout << "x,y,z,size" << std::endl;
     for (octomap::OcTree::leaf_iterator iter = octree.begin_leafs(); iter != octree.end_leafs(); ++iter) {
-        std::string output_string = "";
-        output_string += std::to_string(iter.getX()) + ",";
-        output_string += std::to_string(iter.getY()) + ",";
-        output_string += std::to_string(iter.getZ()) + ",";
-        output_string += std::to_string(iter.getSize()) + "\n";
-        output_stream << output_string;
+        std::cout << std::to_string(iter.getX())    + ",";
+        std::cout << std::to_string(iter.getY())    + ",";
+        std::cout << std::to_string(iter.getZ())    + ",";
+        std::cout << std::to_string(iter.getSize()) + "\n";
     }
-    std::cout << "I think I'm all done here." << std::endl;
 
     return 0;
 }
