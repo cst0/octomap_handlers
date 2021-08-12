@@ -26,6 +26,7 @@ int main(int argc, char *argv[])
         std::cerr << "Didn't get input file-- not sure what to do here!" << std::endl;
         return -1;
     }
+
     octomap::OcTree octree = octomap::OcTree(inputfile);
 
     std::fstream output_stream;
@@ -41,10 +42,12 @@ int main(int argc, char *argv[])
 
     std::cout << "x,y,z,size" << std::endl;
     for (octomap::OcTree::leaf_iterator iter = octree.begin_leafs(); iter != octree.end_leafs(); ++iter) {
-        std::cout << std::to_string(iter.getX())    + ",";
-        std::cout << std::to_string(iter.getY())    + ",";
-        std::cout << std::to_string(iter.getZ())    + ",";
-        std::cout << std::to_string(iter.getSize()) + "\n";
+        std::cout << std::to_string(iter.getX())          + ",";
+        std::cout << std::to_string(iter.getY())          + ",";
+        std::cout << std::to_string(iter.getZ())          + ",";
+        std::cout << std::to_string(iter->getOccupancy()) + ",";
+        std::cout << std::to_string(iter->getValue())     + ",";
+        std::cout << std::to_string(iter.getSize())       + "\n";
     }
 
     return 0;
